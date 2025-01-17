@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Wake-Down-Site</title>
+        <style>
+            body{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #wk{
+                background: red;
+                color: white;
+                text-align: center;
+                width: 100%;
+            }
+
+            .wake{
+                margin: 0;
+                padding: 0;
+                width: 100vw;
+                background: wheat;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .cp{
+                margin: 0;
+                padding: 0;
+                width: 99%;
+                background: dodgerblue;
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+        <script>
+            // wake down-site (on testing mode) from sleeping to live!
+            const urls = ["https://www.site1.com", "https://www.site2.com"];
+            const xhr = new XMLHttpRequest();
+
+            for (i = 0; i < urls.length; i++){
+                xhr.open("GET", urls[parseInt(i)], true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) { // Request is complete
+                        if (xhr.status === 200) {
+                            alert("Success")
+                            console.log("Success:", JSON.parse(xhr.responseText));
+                        } else {
+                            alert("Error")
+                            console.error("Error:", xhr.statusText);
+                        };
+                    };
+                };
+                xhr.send();
+            };
+        </script>
+    </head>
+    <body>
+        <h1 id="wk">Wake-Down-Site</h1>
+        
+        <div class="wake">
+            <p>Wake down-site (on testing mode) from sleeping to live! It does this at the backend once the site is loaded, using the javascript code embeded within the script tag at the head block top.</p>
+        </div>
+        <br>
+
+        <div class="cp">
+            <br>
+            <small>Copyright &copy; 2025 Wake-Down-Site &REG;</small>
+            <br>
+        </div>
+    </body>
+</html>
